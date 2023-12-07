@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 
 def split(file):
-    data_2 = []
+    data_1, data_2, data_3 = [], [], []
     with open(file, 'r') as file:
         data_1 = file.read()
         data_1 = data_1.split('),')
@@ -10,14 +10,9 @@ def split(file):
             if len(line) < 100:
                 continue
             else:
-                a = line.split(',')
-                print(a)
-        return data_2
-
-def add_to_dict(file):
-    data_2 = []
-    data_1 = split(file)
-    for line in data_1:
+                data_2.append(line.split(','))
+    
+    for line in data_2:
         dicti = {}
         if len(line) == 5:
             dicti['Пассажир'] = line[0]
@@ -25,7 +20,7 @@ def add_to_dict(file):
             dicti['Мест'] = 1
             dicti['Остановка'] = line[2]
             dicti['Телефон'] = line[4]
-            data_2.append(dicti)
+            data_3.append(dicti)
 
         else:
             dicti['Пассажир'] = line[0]
@@ -33,8 +28,8 @@ def add_to_dict(file):
             dicti['Мест'] = line[2]
             dicti['Остановка'] = line[3]
             dicti['Телефон'] = line[5]
-            data_2.append(dicti)
-        return data_2
+            data_3.append(dicti)
+    return data_3
 
 # fields = ["Пассажир", "Маршрут", "Мест", "" ,"Остановка", "Телефон"]
 
