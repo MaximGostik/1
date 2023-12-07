@@ -31,15 +31,21 @@ def split(file):
             data_3.append(dicti)
     return data_3
 
-# fields = ["Пассажир", "Маршрут", "Мест", "" ,"Остановка", "Телефон"]
 
+with open('1end.csv','w') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(("Пассажир", "Маршрут", "Мест","Остановка", "Телефон"))
 
+        for line in data_3:
+            writer.writerow((line["Пассажир"],line["Маршрут"],line["Мест"],line["Остановка"],line["Телефон"]))
 
 
 # for line in data_3:
 #     with open('1end.csv', 'a', encoding='utf-8') as new_file:
 #         writer = csv.writer(new_file, fieldnames=fields)
 #         writer.writerow(line)
+
+
 if __name__ == '__main__':
     new_data = split('1end.txt')
 
